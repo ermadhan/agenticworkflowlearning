@@ -17,3 +17,15 @@ directory by default; existing files with those names may be overwritten.
 
 The script executes model-generated Python without a sandbox. Run it only in a
 trusted environment; generated code has the permissions of your user account.
+
+# SQL reflection workflow
+
+```powershell
+.\venv\Scripts\python.exe .\reflectiondesignpatternexample_sql.py
+```
+
+The SQL example uses the same AI Credit settings. It uses `products.db` next
+to the script, creating sample data only if that file does not exist. Use
+`--help` to choose another database, question, or supported model. Generated
+SQL runs read-only; the schema and first query's results are sent to the model
+for reflection.
