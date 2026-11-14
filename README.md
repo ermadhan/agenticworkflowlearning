@@ -43,6 +43,13 @@ coordinates to Open-Meteo and the resulting weather to the model. The multiple
 demo lets the model create text and PNG files at requested paths; existing files
 are not overwritten.
 
+# Inventory planning example
+
+Run `.\venv\Scripts\python.exe .\M5_UGL_1\example1.py` with the AI Credit
+settings above. Use `--model` for a supported model and `--prompt` to change the
+final customer request. The demonstration sends prompts and sample inventory
+information to the model; inventory and transactions are updated only in memory.
+
 # Research example
 
 `componenteval1.py` uses the same AI Credit settings through AISuite. It also
