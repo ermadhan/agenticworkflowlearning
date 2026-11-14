@@ -43,6 +43,12 @@ coordinates to Open-Meteo and the resulting weather to the model. The multiple
 demo lets the model create text and PNG files at requested paths; existing files
 are not overwritten.
 
+# Research example
+
+`componenteval1.py` uses the same AI Credit settings through AISuite. It also
+requires a `research_tools` module providing `arxiv_search_tool`,
+`tavily_search_tool`, and `wikipedia_search_tool`; that module is not included.
+
 # Email example
 
 Set `M3_EMAIL_SERVER_API_URL` to the email server's base URL; the bundled

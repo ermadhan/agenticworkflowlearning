@@ -15,14 +15,19 @@ from anthropic import Anthropic
 load_dotenv()
 
 
-def _get_openai_client() -> OpenAI:
+def _get_ai_credit_config() -> tuple[str, str]:
     api_key = os.getenv("AI_CREDIT_KEY")
     base_url = os.getenv("AI_CREDIT_URL")
     if not api_key or not api_key.strip():
         raise ValueError("Set AI_CREDIT_KEY to your AI Credit API key.")
     if not base_url or not base_url.strip():
         raise ValueError("Set AI_CREDIT_URL to your AI Credit API base URL.")
-    return OpenAI(api_key=api_key.strip(), base_url=base_url.strip())
+    return api_key.strip(), base_url.strip()
+
+
+def _get_openai_client() -> OpenAI:
+    api_key, base_url = _get_ai_credit_config()
+    return OpenAI(api_key=api_key, base_url=base_url)
 
 
 def _get_anthropic_client() -> Anthropic:
