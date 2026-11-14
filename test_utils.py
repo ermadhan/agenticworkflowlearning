@@ -1,10 +1,32 @@
+import contextlib
+import io
+import runpy
 import unittest
 from unittest.mock import patch
+from pathlib import Path
 
 import utils
 
 
 class AICreditClientTests(unittest.TestCase):
+    def test_second_example_initializes_configured_client(self):
+        values = {"AI_CREDIT_KEY": "test-key", "AI_CREDIT_URL": "https://gateway.example/v1"}
+        path = Path(__file__).with_name("tools_example2.py")
+        with (
+            patch.dict("os.environ", values, clear=True),
+            patch("utils.OpenAI") as client,
+            patch("utils_tools2.test_send_email", return_value={"id": 1}),
+            patch("utils_tools2.test_get_email"),
+            patch("email_tools.send_email", return_value={"id": 1}),
+            patch("email_tools.get_email", return_value={"id": 1}),
+            patch("utils_tools2.reset_database"),
+            patch("utils_tools2.run_email_agent", return_value="Done"),
+            contextlib.redirect_stdout(io.StringIO()),
+        ):
+            namespace = runpy.run_path(str(path))
+            client.assert_called_once_with(api_key="test-key", base_url="https://gateway.example/v1")
+            self.assertIs(namespace["client"], client.return_value)
+
     def test_requires_api_key_and_url(self):
         for values, missing in (
             ({}, "AI_CREDIT_KEY"),
