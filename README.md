@@ -50,6 +50,15 @@ settings above. Use `--model` for a supported model and `--prompt` to change the
 final customer request. The demonstration sends prompts and sample inventory
 information to the model; inventory and transactions are updated only in memory.
 
+# Sunglasses campaign example
+
+Set `TAVILY_API_KEY` in `.env` along with the AI Credit settings. Run
+`.\venv\Scripts\python.exe .\M5_UGL_2\example1.py`; use `--help` to select
+models and output paths. The provider must support chat, vision, and image
+generation. The script sends a search query to Tavily and sends search results,
+sample product information, and the generated image to the AI Credit provider.
+It writes a PNG and Markdown report without overwriting existing files.
+
 # Research example
 
 `componenteval1.py` uses the same AI Credit settings through AISuite. It also
